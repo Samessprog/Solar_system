@@ -88,21 +88,27 @@ function selectPlanet(planet) {
 }
 
 function onMouseDown(event) {
-  const raycaster = new THREE.Raycaster();
-  const mouse = new THREE.Vector2();
+  const clickedElementId = event.target.id;
+  const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
 
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  if (!menuIds.includes(clickedElementId)) {
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
 
-  raycaster.setFromCamera(mouse, camera);
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-  const intersects = raycaster.intersectObjects(scene.children);
+    raycaster.setFromCamera(mouse, camera);
 
-  if (intersects.length > 0) {
-    selectPlanet(intersects[0].object);
+    const intersects = raycaster.intersectObjects(scene.children);
+
+    if (intersects.length > 0) {
+      selectPlanet(intersects[0].object);
+    }
+
+    isDragging = true;
   }
 
-  isDragging = true;
 }
 function onMouseMove(event) {
   if (isDragging) {
