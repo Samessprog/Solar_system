@@ -72,6 +72,7 @@ scene.add(neptuneOrbit);
 neptune.add(neptuneRing);
 neptuneRing.rotation.x = Math.PI / 2; // Obrót wokół osi X o 90 stopni
 
+
 let selectedPlanet = sun;
 let isDragging = false;
 let prevMouseX = 0;
@@ -176,26 +177,26 @@ function onScroll(event) {
 }
 
 const planetsRing = [
-  { planet: mercury, ring: mercuryRing, speed: mercurySpeed},
-  { planet: venus, ring: venusRing, speed: venusSpeed},
-  { planet: earth, ring: earthRing, speed: earthSpeed},
-  { planet: mars, ring: marsRing, speed: marsSpeed},
-  { planet: jupiter, ring: jupiterRing, speed: jupiterSpeed},
-  { planet: saturn, ring: saturnRing, speed: saturnSpeed},
-  { planet: uranus, ring: uranusRing, speed: uranusSpeed},
-  { planet: neptune, ring: neptuneRing, speed: neptuneSpeed}
+  { planet: mercury, ring: mercuryRing, speed: mercurySpeed },
+  { planet: venus, ring: venusRing, speed: venusSpeed },
+  { planet: earth, ring: earthRing, speed: earthSpeed },
+  { planet: mars, ring: marsRing, speed: marsSpeed },
+  { planet: jupiter, ring: jupiterRing, speed: jupiterSpeed },
+  { planet: saturn, ring: saturnRing, speed: saturnSpeed },
+  { planet: uranus, ring: uranusRing, speed: uranusSpeed },
+  { planet: neptune, ring: neptuneRing, speed: neptuneSpeed }
 ];
 
 const planetsRotate = [
-  { planet: sun, planetAxis: sunAxis, planetRotate: sunRotate},
-  { planet: mercury, planetAxis: mercuryAxis, planetRotate: mercuryRotate},
-  { planet: venus, planetAxis: venusAxis, planetRotate: venusRotate},
-  { planet: earth, planetAxis: earthAxis, planetRotate: earthRotate},
-  { planet: mars, planetAxis: marsAxis, planetRotate: marsRotate},
-  { planet: jupiter, planetAxis: jupiterAxis, planetRotate: jupiterRotate},
-  { planet: saturn, planetAxis: saturnAxis, planetRotate: saturnRotate},
-  { planet: uranus, planetAxis: uranusAxis, planetRotate: uranusRotate},
-  { planet: neptune, planetAxis: neptuneAxis, planetRotate: neptuneRotate},
+  { planet: sun, planetAxis: sunAxis, planetRotate: sunRotate },
+  { planet: mercury, planetAxis: mercuryAxis, planetRotate: mercuryRotate },
+  { planet: venus, planetAxis: venusAxis, planetRotate: venusRotate },
+  { planet: earth, planetAxis: earthAxis, planetRotate: earthRotate },
+  { planet: mars, planetAxis: marsAxis, planetRotate: marsRotate },
+  { planet: jupiter, planetAxis: jupiterAxis, planetRotate: jupiterRotate },
+  { planet: saturn, planetAxis: saturnAxis, planetRotate: saturnRotate },
+  { planet: uranus, planetAxis: uranusAxis, planetRotate: uranusRotate },
+  { planet: neptune, planetAxis: neptuneAxis, planetRotate: neptuneRotate },
 ];
 
 function updateRingScale() {
@@ -208,10 +209,14 @@ function updateRingScale() {
 
 let number = 1;
 let times = document.getElementById('time');
-times.addEventListener('change',()=>{
+times.addEventListener('change', () => {
   number = times.value;
 });
-console.log(times);
+
+
+let orginalMarsPosition = mars.position
+
+
 function rotatePlanets() {
   planetsRing.forEach(({ planet, speed }) => {
     if (movable) {
@@ -224,13 +229,14 @@ function rotatePlanets() {
 
       planet.rotation.y += rotationSpeed;
 
-      if(follow){
-      // Aktualizacja pozycji kamery względem planety
-      camera.position.copy(selectedPlanet.position); // Ustawienie pozycji kamery na pozycję planety
-      const cameraOffset = new THREE.Vector3(0, 130, -200); // Przesunięcie kamery względem planety (można dostosować)
-      cameraOffset.applyQuaternion(selectedPlanet.quaternion); // Zastosowanie rotacji planety do przesunięcia kamery
-      camera.position.add(cameraOffset);
-      camera.lookAt(selectedPlanet.position); // Skierowanie kamery w stronę planety
+
+      if (follow) {
+        // Aktualizacja pozycji kamery względem planety
+        camera.position.copy(selectedPlanet.position); // Ustawienie pozycji kamery na pozycję planety
+        const cameraOffset = new THREE.Vector3(0, 130, -200); // Przesunięcie kamery względem planety (można dostosować)
+        cameraOffset.applyQuaternion(selectedPlanet.quaternion); // Zastosowanie rotacji planety do przesunięcia kamery
+        camera.position.add(cameraOffset);
+        camera.lookAt(selectedPlanet.position); // Skierowanie kamery w stronę planety
       }
     }
   });
@@ -256,14 +262,21 @@ function animate() {
   renderer.render(scene, camera);
 }
 
+
 let movable = false;
 let handleMove = document.getElementById('Move');
-handleMove.addEventListener('click', ()=>{
-  movable = !movable;
+handleMove.addEventListener('click', () => {
+  movable = true;
 });
+
+let pauseAnimation = document.getElementById('stop-animation')
+pauseAnimation.addEventListener('click', (() => {
+  movable = false
+}))
+
 let follow = false;
 let handleCameraMove = document.getElementById('CameraMove');
-handleCameraMove.addEventListener('click', ()=>{
+handleCameraMove.addEventListener('click', () => {
   follow = !follow;
 });
 

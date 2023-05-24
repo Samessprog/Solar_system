@@ -1,16 +1,74 @@
-body { margin: 0; }
+body {
+    margin: 0;
+}
 
 #modular-window {
-position: fixed;
-top: 20px;
-left: 20px;
-padding: 10px;
-background-color: rgba(255, 255, 255, 0.5);
-color: #fff;
-border-radius: 5px;
-z-index: 9999;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #9b9b9b;
+    border-radius: 5px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .clicked {
-color: green !important;
+    color: white !important;
+    background-color: #3e3e3e;
+    border-radius: 15px;
+}
+
+.planet {
+    font-size: 17px;
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.planet:hover {
+    color: rgb(255, 255, 255);
+
+}
+
+.start-icon {
+    fill: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.start-icon:hover {
+    fill: rgb(107, 255, 107);
+}
+
+.stop-icon {
+    fill: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.stop-icon:hover {
+    fill: rgb(255, 65, 65);
+}
+
+.planet-speed-slide {
+    background-color: red;
+
+}
+
+.follow-button {
+    background-color: #ffffff;
+    color: black;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+
 }
