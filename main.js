@@ -78,18 +78,92 @@ let isDragging = false;
 let prevMouseX = 0;
 let prevMouseY = 0;
 
+
+
+
+
+let test = false;
+let closeIconHolder;
+
 function selectPlanet(planet) {
   if (planet.name !== '') {
-    console.log(planet);
-    selectedPlanet = planet;
+    if (planet.name === 'Mercury') {
+      if(test === false) {
 
+        let root = document.getElementById('cont');
+        let content = document.createElement('div');
+        content.classList.add('my-content');
+        content.id = 'content'
+  
+        let planetName = document.createElement('div');
+        planetName.classList.add('planet-name');
+        planetName.textContent = 'Mercury';
+        planetName.id = 'planetName'
+  
+        closeIconHolder = document.createElement('div');
+        closeIconHolder.classList.add('close-icon');
+        closeIconHolder.textContent = 'X';
+        closeIconHolder.id = 'X'
+  
+        let holdeofDescNames = document.createElement('div')
+        holdeofDescNames.classList.add('desc-names-holder')
+        holdeofDescNames.id = 'holdeofDescNames'
+  
+        let descriptionName = document.createElement('div')
+        descriptionName.classList.add('desc-name')
+        descriptionName.textContent = 'description of the planet'
+        descriptionName.id = 'descriptionName'
+  
+        let descriptionHolder = document.createElement('div')
+        descriptionHolder.classList.add('description-holder')
+        descriptionHolder.textContent = 'Merkury – najmniejsza i najbliższa Słońca planeta Układu Słonecznego. Jako planeta dolna znajduje się dla ziemskiego obserwatora zawsze blisko Słońca, dlatego jest trudna do obserwacji. Mimo to należy do planet widocznych gołym okiem i była znana już w starożytności. Merkurego dojrzeć można jedynie tuż przed wschodem lub tuż po zachodzie Słońca. Ukształtowanie powierzchni Merkurego przypomina Księżyc: są na nim liczne kratery uderzeniowe i pozbawiony jest on atmosfery. Temperatura powierzchni waha się od −173 °C do 427 °C. W przeciwieństwie do Księżyca, planeta ma jednak duże żelazne jądro, generujące pole magnetyczne stukrotnie słabsze od ziemskiego[4]. Rozmiar jądra sprawia, że Merkury ma jedną z największych gęstości spośród planet Układu Słonecznego[5] (Ziemia ma nieznacznie większą gęstość). Merkury nie ma naturalnych satelitów. Pierwsze udokumentowane obserwacje Merkurego sięgają pierwszego tysiąclecia p.n.e. Starożytni Grecy początkowo uważali, że są to dwa ciała niebieskie: pierwsze widzialne tylko przed wschodem Słońca (nazywali je Apollo), drugie widzialne tylko po zachodzie Słońca (nazywali je Hermesem)[6]. Starożytni Egipcjanie, Chaldejczycy oraz późniejsi astronomowie greccy wiedzieli, że Merkury widoczny o poranku i wieczorem jest tą samą planetą. Było to znane Egipcjanom już około 1150 roku p.n.e. Za sprawą szybkiego ruchu planety, powodowanego jej krótką orbitą, Rzymianie nadali planecie nazwę na cześć posłańca bogów i patrona handlarzy – Merkurego. Symbol astronomiczny planety to stylizowana wersja kaduceusza Hermesa[7]. W porównaniu z innymi planetami Układu Słonecznego o Merkurym wiadomo stosunkowo niewiele; ze względu na problemy natury technicznej zbadały go dotychczas tylko dwie sondy. Pierwsza z nich – Mariner 10 – w latach 1974–1975 trzykrotnie przeleciała obok Merkurego i wykonała mapy 45% powierzchni. Sonda MESSENGER w 2008 i 2009 roku dokonała trzech przelotów obok planety, po czym w latach 2011–2015 badała ją z orbity jako sztuczny satelita. Wystrzelona w 2018 roku sonda BepiColombo ma dotrzeć na orbitę wokół Merkurego w 2025 roku.'
+        descriptionHolder.id = 'desc-holder'
+  
+        let detailsName = document.createElement('div')
+        detailsName.classList.add('details-name')
+        detailsName.textContent = 'details'
+  
+        let detailsHolder = document.createElement('div')
+        detailsHolder.classList.add('details-holder')
+        detailsHolder.textContent = ''
+  
+        holdeofDescNames.append(descriptionName, detailsName)
+        content.append(planetName, closeIconHolder, holdeofDescNames, descriptionHolder);
+        root.append(content);
+  
+        test = true;
+
+      }
+    }
+
+    selectedPlanet = planet;
     camera.lookAt(selectedPlanet.position);
   }
 }
 
+if (test) {
+  let XIcon = document.getElementById('X');
+  XIcon.addEventListener('click', function () {
+    let content = document.getElementById('content');
+    if (content) {
+      content.remove();
+      test = false;
+    }
+  });
+}
+
+function handleCloseIconClick() {
+  content.remove();
+}
+
+if (closeIconHolder !== undefined) {
+  closeIconHolder.addEventListener('click', handleCloseIconClick);
+}
+
+
 function onMouseDown(event) {
   const clickedElementId = event.target.id;
-  const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'time', 'Move', 'stop-animation', 'ars', 'CameraMove'];
+  const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'time', 'Move', 'stop-animation', 'ars', 'CameraMove', 'cont', 'desc-holder', 'content', 'holdeofDescNames', 'planetName', 'descriptionName'];
 
   if (!menuIds.includes(clickedElementId)) {
     const raycaster = new THREE.Raycaster();
@@ -137,6 +211,7 @@ function onMouseUp(event) {
 
 
 function onScroll(event) {
+
   const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
 
   const zoomSpeed = 0.1;
