@@ -17,8 +17,6 @@ body {
     width: 220px;
     border: rgb(126, 126, 126) 1px solid;
     padding: 10px;
-
-
 }
 
 .clicked {
@@ -67,7 +65,7 @@ body {
     background-color: red;
     color: red;
     width: 160px;
-    
+
 
 }
 
@@ -81,6 +79,94 @@ body {
 
 }
 
-#ars{
+#ars {
     background-color: transparent;
+}
+
+
+.cont {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+  
+}
+.my-content {
+    opacity: 80%;
+    border-radius: 15px;
+    border: rgb(255, 255, 255) solid 1px;
+    height: 400px;
+    background-color: rgb(68, 68, 68);
+    position: relative;
+
+}
+
+.planet-name{
+    color: white;
+    font-size: 25px;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.close-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 25px;
+    color: red;
+    padding-right: 13px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.desc-name{
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+    width: 220px;
+}
+
+.description-holder{
+    margin-top: 1rem;
+   padding-left: 30px;
+    max-width: 400px;
+    max-height: 230px;
+    overflow-y: auto;
+    color: white;
+
+}
+
+.desc-names-holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.details-name{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fafafa;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 10px;
+    border: 1px solid #333333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #444444;
 }
