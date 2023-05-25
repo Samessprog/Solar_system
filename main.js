@@ -89,7 +89,7 @@ function selectPlanet(planet) {
 
 function onMouseDown(event) {
   const clickedElementId = event.target.id;
-  const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
+  const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'time', 'Move', 'stop-animation', 'ars', 'CameraMove'];
 
   if (!menuIds.includes(clickedElementId)) {
     const raycaster = new THREE.Raycaster();
