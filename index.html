@@ -6,7 +6,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
     <meta charset="utf-8" />
-    <title>My first three.js app</title>
+    <title>Solar System</title>
     <link rel="stylesheet" href="main.css" type="text/css" />
   </head>
   <body>
@@ -30,7 +30,7 @@
                 height="40"
                 viewBox="0 -960 960 960"
                 width="40"
-                id="Move"
+                id="planetSpeedSlider"
               >
                 <path
                   d="M326.667-326.667h66.666v-306.666h-66.666v306.666Zm160-6L708-480 486.667-627.333v294.666ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z"
@@ -44,7 +44,7 @@
                 height="40"
                 viewBox="0 -960 960 960"
                 width="40"
-                id="stop-animation"
+                id="pauseAnimation"
               >
                 <path
                   d="M366.667-320h66.666v-320h-66.666v320Zm160 0h66.666v-320h-66.666v320ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z"
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-center mt-2">
-            <button id="CameraMove" class="follow-button">Follow</button>
+            <button id="followPlanetButton" class="follow-button">Follow</button>
           </div>
         </div>
         <label class="mt-3" id="zakres">Miesiące (prędkość):</label>
