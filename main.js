@@ -5,7 +5,7 @@ import { venus, venusOrbit, venusRing, venusSpeed, venusAxis, venusRotate } from
 import { earth, earthOrbit, earthRing, earthSpeed, earthAxis, earthRotate } from './Planets/earth'
 import { mars, marsOrbit, marsRing, marsSpeed, marsAxis, marsRotate } from './Planets/mars'
 import { jupiter, jupiterOrbit, jupiterRing, jupiterSpeed, jupiterAxis, jupiterRotate } from './Planets/jupiter'
-import { saturn, saturnOrbit, saturnRing, saturnSpeed, saturnAxis, saturnRotate } from './Planets/saturn'
+import { saturn, saturnOrbit, saturnRing, saturnSpeed, saturnAxis, saturnRotate, saturnRingPlanet } from './Planets/saturn'
 import { uranus, uranusOrbit, uranusRing, uranusSpeed, uranusAxis, uranusRotate } from './Planets/uranus'
 import { neptune, neptuneOrbit, neptuneRing, neptuneSpeed, neptuneAxis, neptuneRotate } from './Planets/neptune'
 
@@ -59,6 +59,7 @@ scene.add(saturn);
 scene.add(saturnOrbit);
 saturn.add(saturnRing);
 saturnRing.rotation.x = Math.PI / 2; // Obrót wokół osi X o 90 stopni
+saturn.add(saturnRingPlanet);
 
 //Uranus
 scene.add(uranus);
@@ -78,10 +79,14 @@ let isDragging = false;
 let prevMouseX = 0;
 let prevMouseY = 0;
 
+const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'time', 'Move', 'stop-animation', 'ars', 'CameraMove', 'cont', 'desc-holder', 'content', 'holdeofDescNames', 'planetName', 'descriptionName','descHolder','zakres'];
+
+
 let test = false;
 let closeIconHolder;
 
 function selectPlanet(planet) {
+
   if (planet.name !== '') {
 
     let root = document.getElementById('cont');
@@ -93,7 +98,7 @@ function selectPlanet(planet) {
     planetName.classList.add('planet-name');
     planetName.id = 'planetName'
 
-    closeIconHolder = document.createElement('div');
+    let closeIconHolder = document.createElement('div');
     closeIconHolder.classList.add('close-icon');
     closeIconHolder.textContent = 'X';
     closeIconHolder.id = 'X'
@@ -111,10 +116,19 @@ function selectPlanet(planet) {
     descriptionHolder.classList.add('description-holder')
     descriptionHolder.id = 'desc-holder text-break'
 
+
     if (test === true) {
+
+      closeIconHolder.addEventListener('click', function () {
+
+        root.removeChild(root.firstChild);
+        test = false;
+      });
       root.removeChild(root.firstChild);
       test = false;
-    } else if (test === false) {
+    }
+
+    if (test === false) {
       if (planet.name === 'Mercury') {
         planetName.textContent = 'Mercury';
         descriptionHolder.textContent = 'Merkury – najmniejsza i najbliższa Słońca planeta Układu Słonecznego. Jako planeta dolna znajduje się dla ziemskiego obserwatora zawsze blisko Słońca, dlatego jest trudna do obserwacji. Mimo to należy do planet widocznych gołym okiem i była znana już w starożytności. Merkurego dojrzeć można jedynie tuż przed wschodem lub tuż po zachodzie Słońca. Ukształtowanie powierzchni Merkurego przypomina Księżyc: są na nim liczne kratery uderzeniowe i pozbawiony jest on atmosfery. Temperatura powierzchni waha się od −173 °C do 427 °C. W przeciwieństwie do Księżyca, planeta ma jednak duże żelazne jądro, generujące pole magnetyczne stukrotnie słabsze od ziemskiego[4]. Rozmiar jądra sprawia, że Merkury ma jedną z największych gęstości spośród planet Układu Słonecznego[5] (Ziemia ma nieznacznie większą gęstość). Merkury nie ma naturalnych satelitów. Pierwsze udokumentowane obserwacje Merkurego sięgają pierwszego tysiąclecia p.n.e. Starożytni Grecy początkowo uważali, że są to dwa ciała niebieskie: pierwsze widzialne tylko przed wschodem Słońca (nazywali je Apollo), drugie widzialne tylko po zachodzie Słońca (nazywali je Hermesem)[6]. Starożytni Egipcjanie, Chaldejczycy oraz późniejsi astronomowie greccy wiedzieli, że Merkury widoczny o poranku i wieczorem jest tą samą planetą. Było to znane Egipcjanom już około 1150 roku p.n.e. Za sprawą szybkiego ruchu planety, powodowanego jej krótką orbitą, Rzymianie nadali planecie nazwę na cześć posłańca bogów i patrona handlarzy – Merkurego. Symbol astronomiczny planety to stylizowana wersja kaduceusza Hermesa[7]. W porównaniu z innymi planetami Układu Słonecznego o Merkurym wiadomo stosunkowo niewiele; ze względu na problemy natury technicznej zbadały go dotychczas tylko dwie sondy. Pierwsza z nich – Mariner 10 – w latach 1974–1975 trzykrotnie przeleciała obok Merkurego i wykonała mapy 45% powierzchni. Sonda MESSENGER w 2008 i 2009 roku dokonała trzech przelotów obok planety, po czym w latach 2011–2015 badała ją z orbity jako sztuczny satelita. Wystrzelona w 2018 roku sonda BepiColombo ma dotrzeć na orbitę wokół Merkurego w 2025 roku.'
@@ -155,14 +169,35 @@ function selectPlanet(planet) {
       content.append(planetName, closeIconHolder, descriptionName, descriptionHolder);
       root.append(content);
     }
+
+
     selectedPlanet = planet;
     camera.lookAt(selectedPlanet.position);
   }
+
+}
+
+if (test) {
+  let XIcon = document.getElementById('X');
+  XIcon.addEventListener('click', function () {
+    let content = document.getElementById('content');
+    if (content) {
+      content.remove();
+      test = false;
+    }
+  });
+}
+
+function handleCloseIconClick() {
+  content.remove();
+}
+
+if (closeIconHolder !== undefined) {
+  closeIconHolder.addEventListener('click', handleCloseIconClick);
 }
 
 function onMouseDown(event) {
   const clickedElementId = event.target.id;
-  const menuIds = ['modular-window', 'sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'time', 'Move', 'stop-animation', 'ars', 'CameraMove', 'cont', 'desc-holder', 'content', 'holdeofDescNames', 'planetName', 'descriptionName'];
 
   if (!menuIds.includes(clickedElementId)) {
     const raycaster = new THREE.Raycaster();
@@ -204,13 +239,15 @@ function onMouseMove(event) {
   prevMouseY = event.clientY;
 }
 
-function onMouseUp(event) {
+function onMouseUp() {
   isDragging = false;
 }
 
-
 function onScroll(event) {
+  const scrollElementId = event.target.id;
+  
 
+  if (!menuIds.includes(scrollElementId)) {
   const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
 
   const zoomSpeed = 0.1;
@@ -253,7 +290,7 @@ function onScroll(event) {
     const cameraPosition = camera.position.clone().sub(selectedPlanet.position).multiplyScalar(zoomFactor).add(selectedPlanet.position);
     camera.position.copy(cameraPosition);
   }
-
+  }
 }
 
 const planetsRing = [
@@ -287,12 +324,11 @@ function updateRingScale() {
   });
 }
 
-let number = 1;
+let number = 3;
 let times = document.getElementById('time');
 times.addEventListener('change', () => {
   number = times.value;
 });
-
 
 function rotatePlanets() {
   planetsRing.forEach(({ planet, speed }) => {
@@ -322,7 +358,6 @@ function rotatePlanets() {
 // Funkcja renderująca scenę
 function renderScene() {
   rotatePlanets();
-
   // Renderowanie sceny (kod renderowania nie jest zawarty w przykładzie, należy go dodać odpowiednio do Twojego kodu)
   // renderer.render(scene, camera);
 }
@@ -338,7 +373,6 @@ function animate() {
 
   renderer.render(scene, camera);
 }
-
 
 let movable = false;
 let handleMove = document.getElementById('Move');
@@ -362,7 +396,6 @@ document.addEventListener('mousedown', onMouseDown, false);
 document.addEventListener('mousemove', onMouseMove);
 document.addEventListener('wheel', onScroll);
 document.addEventListener('mouseup', onMouseUp, false);
-
 
 const planetElements = document.querySelectorAll("#modular-window div");
 
@@ -405,7 +438,6 @@ function onPlanetClick(event) {
       break;
   }
 }
-
 
 // Ustawianie pozycji kamery
 camera.position.x = 0;

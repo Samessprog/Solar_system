@@ -130,12 +130,10 @@ body {
 .description-holder{
     margin-top: 1rem;
    padding-left: 30px;
-    max-width: 500px;
+    max-width: 580px;
     max-height: 230px;
     overflow-y: auto;
     color: white;
-    padding-right: 10px;
-
 
 }
 
@@ -146,6 +144,12 @@ body {
 }
 
 
+.details-name{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    width: 200px;
+    text-align: center;
+}
 
 
 ::-webkit-scrollbar {
