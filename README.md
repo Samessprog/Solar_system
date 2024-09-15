@@ -18,6 +18,10 @@ Solar_system provides a realistic representation of our solar system, allowing u
 ## Technologies
 
 - **Three.js:** A JavaScript library for creating 3D graphics in the browser.
+- JavaScript
+- CSS
+- HTML 
+
 
 ## Installation
 
