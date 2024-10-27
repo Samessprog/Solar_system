@@ -9,11 +9,18 @@ Solar_system provides a realistic representation of our solar system, allowing u
 ## Features
 
 - **Interactive Exploration:** Users can move around the solar system and navigate between planets using their mouse.
-- **Realistic Scaling and Orbits:** Planets are represented with accurate scaling and orbital paths. Each planet's orbit is color-coded to match the planet.
+- **Realistic Scaling
+ and Orbits:** Planets are represented with accurat
+e 
+scaling and orbital paths. Each planet's orbit is color-coded to match the planet.
 - **Planet Selection Menu:** A menu displays the names of all planets in the solar system. Users can select a planet from this menu to smoothly transition to a close-up view of the chosen planet.
 - **Detailed Planet View:** When a planet is selected, the camera smoothly zooms in, allowing users to observe the planet's rotation and view an information window with details about the planet.
 - **Time Acceleration Slider:** Users can adjust a slider in the planet selection menu to speed up the rotation of planets, simulating time acceleration.
 - **Clickable Planets and Orbits:** Users can click on a planet or its orbit to access information about the planet without using the menu.
+
+![Screen2](https://github.com/user-attachments/assets/32c9f4ec-79ca-48f1-b80a-16c7fcdd55cf)
+![Screen1](https://github.com/user-attachments/assets/93b10b46-9c56-493e-963f-c20888f89ec8)
+![Screen3](https://github.com/user-attachments/assets/3b290d5a-fdf4-453a-adb8-33bd2528e03f)
 
 ## Technologies
 
@@ -26,6 +33,7 @@ Solar_system provides a realistic representation of our solar system, allowing u
 ## Installation
 
 To run the Solar_system application locally, follow these steps:
+
 
 1. **Clone the repository:**
    ```bash
