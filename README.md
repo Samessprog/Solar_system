@@ -22,7 +22,6 @@ scaling and orbital paths. Each planet's orbit is color-coded to match the plane
 ![Screen1](https://github.com/user-attachments/assets/93b10b46-9c56-493e-963f-c20888f89ec8)
 ![Screen3](https://github.com/user-attachments/assets/3b290d5a-fdf4-453a-adb8-33bd2528e03f)
 
-
 ## Technologies
 
 - **Three.js:** A JavaScript library for creating 3D graphics in the browser.
