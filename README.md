@@ -29,7 +29,6 @@ scaling and orbital paths. Each planet's orbit is color-coded to match the plane
 - CSS
 - HTML 
 
-
 ## Installation
 
 To run the Solar_system application locally, follow these steps:
